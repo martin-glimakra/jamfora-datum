@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function getData () {
+            let response = await fetch('https://images-api.nasa.gov/search?q=nasa')
+            let data = await response.json()
+
+            console.log(data.collection.items)
+
+            let filteredArray = data.collection.items.filter(item => new Date(item.data[0].date_created) > new Date("2015-05-14T00:00:00Z") )
+
+            console.log('filteredArray', filteredArray)
+        }
+
+        getData()
+    </script>
+</body>
+</html>
